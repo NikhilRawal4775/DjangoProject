@@ -1,0 +1,104 @@
+			                            My Survey
+-----------------------------------------------------------------------------------------------------------------------
+Models			11
+Views			35
+Urls			35
+decoratores             03
+forms			10
+templates		15
+DB-Engine		mysql
+DB-Name			mysurvey
+Groups          	['admin','customer']
+------------------------------------------------------------------------------------------------------------------------
+Home:-
+
+1. Start Survey: if user is logedin it will lend the user to survey page else it will lend to login page
+2. News: it contains the news posted by user and latest one comes above
+3. Signup: it will lend the user to signup page if he is not logedin else lend to survey page
+4. Login: it will lend the user to login page if he is not logedin else lend to survey page
+-----------------------------------------------------------------------------------------------------------------------
+News:-
+
+1. it contains the latest news posted by admin
+------------------------------------------------------------------------------------------------------------------------
+Signup:-
+
+1. Error Messages:-
+	-> if user type username already exist
+	-> if user type different password in password and confirm password field
+	-> invalid email typed my user
+2. By default user will be added in customer group
+3. Profile will be created where user can edit his personal information
+4. if there is a successful signup it will show sucess message in login page and lend to login page
+------------------------------------------------------------------------------------------------------------------------
+Login:-
+
+1. Error Messages:-
+	-> Wrong Credentials
+2. Two Types of login
+	-> Admin
+	-> Customer
+3. if user uses admin credentials it will lend to admin page
+4. if user uses customer credentials it will lend to customer page
+-----------------------------------------------------------------------------------------------------------------------
+_______________________________________________________________________________________________________________________
+						Cutomer Login
+
+1. user name and image will be shown in top right corner
+2. user will lend to survey page
+3. Profile:- user can edit his/her profile
+4. Options:-
+	-> Text-Poll
+	-> Option-Poll
+	-> Survey
+5. if options(Test-Poll,Option-Poll,Survey) are activated user can answer the Options(Test-Poll,Option-Poll,Survey)
+6. if Responses are activated user can see the responses 
+7. logout button it will redirect the user to login page
+________________________________________________________________________________________________________________________
+						Admin Login
+
+1. There are 3 features
+	-> Text-Poll
+	-> Option-Poll
+	-> Survey
+2. Text-Poll:-
+ 	-> admin can answer the text-poll
+	-> admin can delete the text-poll
+	-> admin can see the responses of the text-poll
+	-> admin can make Responses on or off
+	-> admin can Activate and Deactive the Text-Poll
+3. Option-Poll:-
+	-> admin can answer the Option-Poll
+	-> admin can delete the Option-Poll
+	-> admin can see the responses of the Option-Poll
+	-> admin can make Responses on or off
+	-> admin can Activate and Deactive the Option-Poll
+4. Survey:-
+	-> admin can answer the Survey
+	-> admin can delete the Survey
+	-> admin can see the responses of the Survey
+	-> admin can make Responses on or off
+	-> admin can Activate and Deactive the Survey
+	-> admin can see the question in the survey
+	-> admin can delete the questions in the survey
+5. Profile:-
+	->admin can edit his/her profile
+6. Logout:-
+	-> admin can logout
+--------------------------------------------------------------------------------------------------------------------------
+ADMIN:-
+	-> admin can add question in Text-Poll
+	-> admin can add question in Option-Poll and create Options
+	-> admin can add question of different types in Survey and add options for option-type field
+	-> admin can add news and delete news
+___________________________________________________________________________________________________________________________
+Extra:-
+	-> if admin is logedin he dont need to be login again
+	-> if user is not logedin he can not access to any page and redirected to login page
+	-> if user is admin he will redirected to admin page else he/she will be redirected to survey page
+	-> if there is no option for Text-Poll, Option-Poll, Survey it will show no option available
+_____________________________________________________________________________________________________________________________ 
+_____________________________________________________________________________________________________________________________ 
+	
+
+

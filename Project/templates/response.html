@@ -1,0 +1,29 @@
+{%extends 'account.html'%}
+{%block title%}Responses{%endblock title%}
+{%block survey%}active{%endblock survey%}
+
+{%block details%}
+<div class="container" style="font-family:Comic Sans MS;">
+    <center><h1 style="color:blueviolet;">Responses</h1></center>
+    <div>
+        <h3>Question</h3><hr style="height:1px; width:100%; border-width:0; color:red; background-color:rgb(8, 113, 155)">
+    </div>
+    <div class="container" style="font-family:Comic Sans MS;">
+        <div class="container" style="font-family:Comic Sans MS;border:2px solid rgb(59, 59, 59);border-radius:20px;padding:15px;">
+        {{q.question}}
+        </div>
+    <br>
+            {%for i in res%}    
+        
+        <div class="container">
+            <span class="label label-info">{{i.user}}</span>
+            <div style="font-family:Comic Sans MS;border:1px solid grey;border-radius:100px;margin:5px 0px;width:400px;padding:7px;">  
+                <p>{{i.res}}</p>
+            </div>
+        </div>
+            {%endfor%}
+        
+    </div>
+</div>
+
+{%endblock details%}

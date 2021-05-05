@@ -1,0 +1,135 @@
+{%extends 'account.html'%}
+{%block title%}Survey{%endblock title%}
+{%block survey%}active{%endblock survey%}
+
+{%block details%}
+<div class="container" style="font-family:Comic Sans MS;">
+    <center><h1 style="color:blueviolet;font-weight: bolder;font-size:100px;">My<small>survey</small></h1></center>
+    <div class="container">
+        <h3 style="font-weight: bolder;">Text-Poll</h3><hr style="height:2px; width:100%; border-width:0; color:red; background-color:black">
+       
+            {%for i in questions%}
+           
+            <div class="container" style="border:2px solid black;margin:5px;width:80%;border-radius:10px;box-shadow: 10px 10px 5px #aaaaaa;">
+                <div class="container" style="color:blueviolet;"><h3 style="font-weight: bolder;">{{i.name}}</h3></div><hr>
+                <div class="container">{{i.question}}</div><hr>
+                <div class="container" id="a">
+                    {%if request.user.is_staff or i.user_response%}
+                    <a class="btn btn-success" href="{%url 'answer' i.id%}">Answer</a>
+                    {%endif%}
+                    {%if request.user.is_staff or i.view_response %}
+                    <a class="btn btn-warning" href="{%url 'response' i.id%}">Responses</a> 
+                    {%endif%}  
+                    {%if request.user.is_staff %}
+                    <a class="btn btn-danger" href="{%url 'deletequestion' i.id%}">Delete</a>
+                    {%if i.view_response%}
+                    <a class="btn btn-info" href="{%url 'viewresponses' i.id%}">Responses: On</a>
+                    {%else%}
+                    <a class="btn btn-info" href="{%url 'viewresponses' i.id%}">Responses: Off</a>
+                    {%endif%}
+                    {%if i.user_response%}
+                    <a class="btn" style="background-color:green;color:white;" href="{%url 'useranswer' i.id%}">Answer: Activated</a>
+                    {%else%}
+                    <a class="btn" style="background-color:red;color:white;" href="{%url 'useranswer' i.id%}">Answer: Deactivated</a>
+                    {%endif%}
+                    {%endif%}
+                </div>
+                <br><br>
+                </div>
+          
+            {%endfor%}
+
+    </div>
+    <br>
+    <div class="container">
+        <h3 style="font-weight: bolder;">Option-Poll</h3><hr style="height:2px; width:100%; border-width:0; color:red; background-color:black">
+            {%for i in pquestions%}
+           
+            <div class="container" style="border:2px solid black;margin:5px;width:80%;border-radius:10px;box-shadow: 10px 10px 5px #aaaaaa;">
+                <div class="container" style="color:blueviolet;"><h3 style="font-weight: bolder;">{{i.name}}</h3></div><hr>
+                <div class="container">{{i.question}}</div><hr>
+                <div class="container" id="b">
+                    {%if request.user.is_staff or i.user_response%}
+                <a class="btn btn-success" href="{%url 'pvote' i.id%}">Vote</a>
+                {%endif%}
+                {%if request.user.is_staff or i.view_response %}
+                <a class="btn btn-warning" href="{%url 'presponse' i.id%}">Responses</a>
+                {%endif%}
+                {%if request.user.is_staff %}
+                <a class="btn btn-danger" href="{%url 'deletepquestion' i.id%}">Delete</a>
+                {%if i.view_response%}
+                <a class="btn btn-info" href="{%url 'pviewresponses' i.id%}">Responses: On</a>
+                {%else%}
+                <a class="btn btn-info" href="{%url 'pviewresponses' i.id%}">Responses: Off</a>
+                {%endif%}
+                {%if i.user_response%}
+                <a class="btn" style="background-color:green;color:white;" href="{%url 'puseranswer' i.id%}">Vote: Activated</a>
+                {%else%}
+                <a class="btn" style="background-color:red;color:white;" href="{%url 'puseranswer' i.id%}">Vote: Deactivated</a>
+                {%endif%}
+                {%endif%}   
+                </div>
+                <br>
+            </div>
+            <br>
+            {%endfor%}
+
+    </div>
+
+    <div class="container">
+        <h3 style="font-weight: bolder;">Survey</h3><hr style="height:2px; width:100%; border-width:0; color:red; background-color:black">
+           {%for i in dy%}
+           <div class="container" style="border:2px solid black;margin:5px;width:80%;border-radius:10px;box-shadow: 10px 10px 5px #aaaaaa;">
+            <div class="container" style="color:blueviolet;"><h3 style="font-weight: bolder;">{{i.form_name}}</h3></div><hr>
+            <div class="container" id="c">
+                {%if request.user.is_staff or i.user_response%}
+                <a href="{%url 'dynamicpage' i.id%}" class="btn btn-success">Start Survey</a>
+                {%endif%}
+                {%if request.user.is_staff or i.view_response %}
+                <a href="{%url 'dynamicresponsepage' i.id%}" class="btn btn-warning">Responses</a>
+                {%endif%}
+                {%if request.user.is_staff %}
+                <a href="{%url 'deletedynamic' i.id%}" class="btn btn-danger">Delete</a>
+                <a href="{%url 'myquestionlist' i.id%}" class="btn" style="background-color: indigo;color:white;">Questions</a>
+                {%if i.view_response%}
+             <a class="btn btn-info" href="{%url 'dynamicviewanswer' i.id%}">Responses: On</a>
+             {%else%}
+             <a class="btn btn-info" href="{%url 'dynamicviewanswer' i.id%}">Responses: Off</a>
+             {%endif%}
+                {%if i.user_response%}
+             <a class="btn" style="background-color:green;color:white;" href="{%url 'dynamicanswer' i.id%}">Survey: Activated</a>
+             {%else%}
+             <a class="btn" style="background-color:red;color:white;" href="{%url 'dynamicanswer' i.id%}">Survey: Deactivated</a>
+             {%endif%}
+                {%endif%}
+
+            </div>
+            <br>
+        </div>
+        <br>
+           {%endfor%}
+       
+
+    </div>
+</div>
+<script>
+    var a=document.getElementById('a');
+        if(a.innerHTML.length==82){
+        a.innerHTML='<b style="color:red">no option available for this text-poll</b>';
+        }
+
+        var b=document.getElementById('b');
+        if(b.innerHTML.length==75){
+        b.innerHTML='<b style="color:red">no option available for this Option-poll</b>';
+        }
+
+        var c=document.getElementById('c');
+        console.log(c.innerHTML.length)
+        if(c.innerHTML.length==65){
+        c.innerHTML='<b style="color:red">no option available for this Survey</b>';
+        }
+        
+    
+</script>
+
+{%endblock details%}

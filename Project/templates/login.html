@@ -1,0 +1,60 @@
+{% extends 'home.html'%}
+{%block title%}Log In{%endblock title%}
+{%block home%} {%endblock home%}
+{%block login%}active{%endblock login%}
+
+{%block style1%}
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style>
+     input{
+        height:30px;
+        width: 300px;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: blueviolet;
+    }
+ 
+    th{
+        text-align: left;
+    }
+
+</style>
+{%endblock style1%}
+
+{%block details%}
+<br>
+<div style="position: absolute;top: 200px;left: 150px;">
+<center><h1 style="font-family: Comic Sans MS;"><font style="color: blueviolet;font-weight:bold;font-size:130px;">My</font><small style="font-size:80px;">Survey</small></h1></center>
+<div class="alert" style="font-family: Comic Sans MS;">
+{%for message in messages%}
+<p style="font-family: Comic Sans MS;" id="messages">{{message}}</p>
+{%endfor%}
+</div>
+</div>
+<div class="" style="font-family:Comic Sans MS;width:400px;height:500px;background-color:white;position: absolute;top: 100px;right: 320px;color: black;border-radius:100px 30px;border:2px solid blueviolet;">
+    <center><h1 >Login</h1></center><hr>
+    <form method="post" action="">
+        {% csrf_token %}
+        <br><br>
+        <table style="width: 100%;height: 150px;margin:20px 60px;">
+            <tr>
+                <th>Username</th>
+            </tr>
+            <tr>
+                <td><input type="text" name='username' placeholder="Enter Username"></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+            </tr>
+            <tr>
+                <td><input type="password" name='password' placeholder="Enter Password"></td>
+            </tr>
+        </table>
+      
+        <center><button class="btn btn-success" style="width:100px;height: 40px;">Log In</button></center>
+    </form>
+    
+
+</div>
+
+{%endblock details%}

@@ -1,0 +1,29 @@
+{%extends 'account.html'%}
+{%block title%}Survey{%endblock title%}
+{%block survey%}active{%endblock survey%}
+{%block admin%}{%endblock admin%}
+{%block style1%}
+{%endblock style1%}
+
+{%block details%}
+<div class="container"> 
+<center><h2>{{fname.form_name}}</h2></center><hr style="height:1px; width:100%; border-width:0; color:red; background-color:rgb(175, 4, 255)">
+<!--
+{%for i in rlist%}
+<p style="color: red;"><font style="color:blueviolet">User:</font> {{i.user.username}} <font style="color:blueviolet">Question:</font> {{i.form.ques}} <font style="color:blueviolet">Response:</font> {{i.res}}</p>
+{%endfor%}
+-->
+{%for j in qlist%}
+<div class="alert alert-success">
+  <div class="alert alert-info">  {{j.ques}}</div>
+{%for i in rlist%}
+{%ifequal j.id i.form.id%}
+
+    <p style="color: red;"><font style="color:blueviolet">User:</font> {{i.user.username}}  <font style="color:blueviolet">Response:</font> {{i.res}}</p>
+
+{%endifequal%}
+{%endfor%}
+</div>
+{%endfor%}
+</div>
+{%endblock details%}

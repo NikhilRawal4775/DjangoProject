@@ -1,0 +1,23 @@
+{%extends 'account.html'%}
+{%block title%}Survey{%endblock title%}
+{%block survey%}active{%endblock survey%}
+
+{%block details%}
+<div class="container">
+<center><h2>{{fname.form_name}}</h2></center><hr style="background-color:blueviolet;height:2px;">
+<table class="table" style="width: 100%;">
+    <tr>
+        <th>Question</th>
+        <th>Question type</th>
+        <th>Options</th>
+    </tr>
+    {%for i in qlist%}
+    <tr>
+        <td>{{i.ques}}</td>
+        <td>{{i.field_type}}</td>
+        <td><a href="{%url 'deletemyquestion' i.id%}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {%endfor%}
+</table>
+</div>
+{%endblock details%}

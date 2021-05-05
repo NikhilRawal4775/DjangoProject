@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MySurvey | {%block title%}Home{%endblock title%}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  {%block style1%}
+  <style>
+    .button {
+  border-radius: 10px;
+  background-color: wheat;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 250px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+  </style>
+  {%endblock style1%}
+
+  <style>
+      #active{
+        border-style:solid;
+        border-width:0px 0px 3px 0px;  
+      }
+  </style>
+</head>
+<body style="background-image: url('media/bg.jpg');background-size:100%;">
+    <nav class="navbar navbar-inverse navbar-fixed-top bg-danger text-white">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{%url 'home'%}">MySurvey</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{%url 'home'%}" id='{%block home %}active{%endblock home%}'><span class="glyphicon glyphicon-home"></span>  Home</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-grain"></span>  About</a></li>
+            <li><a href="{%url 'gallery'%}" id='{%block gallery %}{%endblock gallery%}'><span class="glyphicon glyphicon-film"></span> News</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-book"></span> Contect</a></li>
+            {%block nav%}{%endblock nav%}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {%block account%}
+            <li><a href="{%url 'signup'%}" id='{%block signup %}{%endblock signup%}'><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="{%url 'login'%}" id='{%block login%}{%endblock login%}'><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          {%endblock account%}
+          </ul>
+        </div>
+      </nav>
+<div style="position:absolute; top:40px; width:100%;font-family: Comic Sans MS;background-image: url('media/bg.jpg');background-size:100%;">
+{%block details%}
+<h1 style="font-size:150px;color:white;position: absolute;top:100px;left:150px;">My<small>survey</small></h1>
+<div >
+  <br>
+  <center><q style="color:white;font-size:30px;position: absolute;top:340px;left:150px;">We work for you with you</q></center>
+  <br><br>
+  <center><a href="{%url 'survey'%}"><button class="button" style="position: absolute;top:420px;left:150px;" ><span>Start Survey </span></button></a></center>
+</div>
+{%endblock details%}
+</div>
+
+</body>
+</html>

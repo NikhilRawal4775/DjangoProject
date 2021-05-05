@@ -1,0 +1,59 @@
+{%extends 'account.html'%}
+
+{%block style1%}
+<style>
+    input{
+        height:30px;
+        width: 300px;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: blueviolet;
+        background-color: transparent;
+    }
+ 
+    th{
+        text-align: left;
+    }
+    select{
+        height:30px;
+        width: 300px;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: blueviolet;
+        background-color: transparent;
+    }
+
+</style>
+{%endblock style1%}
+
+
+{%block details%}
+<div class="row" style="margin:30px 10px;font-family: Comic Sans MS;">
+    <div class="col-sm-4" style="height:450px;">
+        <div class="thumbnail">
+            <img src="{{request.user.account.user_image.url}}" alt='{{request.user.account.user_image.url}}' style="width:100%;height:380px">
+            <div class="caption">
+            <center><h5>Profile Picture</h5></center>
+            </div>
+        </div>
+      </div>
+    <div class="col-sm-8" style="height:450px;">
+        <center><h3>Edit your Profile</h3></center><hr style="background-color:black;height:2px;">
+        <form method="post" action=""  enctype='multipart/form-data'>
+            {% csrf_token %}
+            <table style="margin: 30px 30px;width:500px;height:250px;">
+                {%for field in form%}
+                <tr>
+                    <td>{{field.label}}</td>
+                    <td>{{field}}</td>
+                </tr>
+
+                {%endfor%}
+            </table>
+            <button type="submit" class="btn btn-success" style="margin: 0px 30px;">Save</button>
+
+        </form>
+    
+    </div>
+  </div>
+{%endblock details%}

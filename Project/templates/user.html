@@ -1,0 +1,114 @@
+{%extends 'account.html'%}
+{%block title%}Survey{%endblock title%}
+{%block survey%}{%endblock survey%}
+{%block admin%}active{%endblock admin%}
+
+{%block details%}
+<h3 style="font-size:50px;">Welcome, <font style="color:green;">{{request.user.account.name}}</font> :)</h3><br><br>
+<div class="container">
+    <h3>Poll and Survey</h3><hr>
+    <button class="btn btn-success" data-toggle="collapse" data-target="#demo">Text-Poll</button>
+<div id="demo" class="row collapse">
+    <center><h3 style="color:green;">Text-Poll</h3></center><hr style="height:1px; width:100%; border-width:0; color:red; background-color:black">
+    <div class="col-sm-4">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{qform.as_p}}
+            <center><button class="btn btn-success">Create Opinion</button></center>
+        </form>
+        <br>
+    </div>
+</div>
+
+<button class="btn btn-success" data-toggle="collapse" data-target="#demo2">Option-Poll</button>
+
+<div id="demo2" class="row collapse">
+    <center><h3 style="color: green;">Add Option-Poll</h3></center><hr style="height:1px; width:100%; border-width:0; color:red; background-color:black">
+<div class="col-sm-4">
+<form method="post" action="{%url 'addpollquestion'%}">
+    {% csrf_token %}
+    {{pform.as_p}}
+<center><button class="btn btn-success">Create Poll</button></center>
+</form>
+</div>
+<div class="col-sm-4">
+    <form method="post" action="{%url 'addpolloption'%}">
+        {% csrf_token %}
+        {{poform.as_p}}
+    <center><button class="btn btn-success">Create Option</button></center>
+    </form>
+    </div>
+</div>
+
+<button class="btn btn-success" data-toggle="collapse" data-target="#demo3">Survey</button>
+<div id="demo3" class="row collapse">
+    <center><h3 style="color: green;">Add Survey</h3></center><hr style="height:1px; width:100%; border-width:0; color:red; background-color:black">
+    <div class="col-sm-4">
+        <form method="post" action="{%url 'adddynamic'%}">
+            {% csrf_token %}
+            {{dform.as_p}}
+        <center><button class="btn btn-success">Create Dynamic Survey</button></center>
+        </form>
+        </div>
+        <div class="col-sm-4">
+            <form method="post" action="{%url 'adddynamicquestion'%}">
+                {% csrf_token %}
+                {{dqform.as_p}}
+            <center><button class="btn btn-success">Create Question</button></center>
+            </form>
+            </div>
+            <div class="col-sm-4">
+                <form method="post" action="{%url 'adddynamicoption'%}">
+                    {% csrf_token %}
+                    {{doform.as_p}}
+                <center><button class="btn btn-success">Create Option</button></center>
+                </form>
+                </div>
+</div>
+
+<h3>News</h3><hr>
+<button class="btn btn-success" data-toggle="collapse" data-target="#demo4">Add/Delete News</button>
+<div id="demo4" class="row collapse">
+    <center><h3 style="color: green;">Post News</h3></center><hr style="height:1px; width:100%; border-width:0; color:red; background-color:black">
+<div class="col-sm-4">
+    <form method="post" action="{%url 'addnews'%}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{gform.as_p}}
+    <center><button class="btn btn-success">Post</button></center>
+    </form>
+</div>
+<div class="col-sm-4">
+   <table class="table" style="width: 100%;">
+    <tr>
+        <th>Heading</th>
+        <th>Option</th>
+    </tr>
+    {%for i in gobj%}
+    <tr>
+        <td>{{i.heading}}</td>
+        <td><a href="{%url 'deletenews' i.id%}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {%endfor%}
+   </table>
+</div>
+
+</div>
+<br><br><br>
+</div>
+<script>
+    var field=document.getElementsByTagName('input')
+    field[1].placeholder='Company Name'
+    field[5].placeholder='Company Name'
+    field[9].placeholder='Option'
+    field[12].placeholder='Name of the Survey'
+    field[16].placeholder='Question for Survey'
+    field[19].placeholder='News Heading'
+    var area=document.getElementsByTagName('textarea')
+    area[0].placeholder="Add Question"
+    area[0].style.height='70px'
+    area[1].placeholder="Add Question"
+    area[1].style.height='70px'
+    area[2].placeholder="Add News Body"
+    area[2].style.height='70px'
+</script>
+{%endblock details%}

@@ -1,0 +1,109 @@
+{%extends 'account.html'%}
+{%block title%}Responses{%endblock title%}
+{%block survey%}active{%endblock survey%}
+{%block style1%}
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{%endblock style1%}
+
+{%block details%}
+<div class="container" style="font-family:Comic Sans MS;">
+    <center><h1 style="color:blueviolet;">Poll Responses</h1></center>
+    <div>
+        <h3>Question</h3><hr style="height:1px; width:100%; border-width:0; color:red; background-color:rgb(8, 113, 155)">
+    </div>
+    <div class="container" style="font-family:Comic Sans MS;">
+        <div class="container" style="font-family:Comic Sans MS;border:2px solid rgb(59, 59, 59);border-radius:20px;padding:15px;">
+        {{pquestion.question}}
+
+        </div>
+    <br>
+               
+        
+        <div class="container">
+            {%for i in poption%}
+            <div style="font-family:Comic Sans MS;margin:5px 0px;width:400px;padding:7px;">  
+                <p>{{i.option}}    <span class="badge">{{i.option_count}}</span></p>
+            </div>
+            {%endfor%}
+        </div>
+            
+        
+    </div>
+    <div id="myChart" style="width:600px;height: 450px;border:2px solid gray;position: absolute;top:210px;right:160px;"></div>
+</div>
+<script>
+
+    var state={
+        'items':[],
+        'values':[],
+    }
+    var objId="{{pquestion.id}}"
+    console.log(objId)
+    var dataURL='/votedata/{{pquestion.id}}/'
+    $.ajax({
+        method:'GET',
+        url:dataURL,
+        success:function(response){
+            console.log('RESPONSE',response)
+            for (var i in response){
+                var key=Object.keys(response[i])[0]
+                var value=Object.values(response[i])[0]
+                state.items.push(key)
+                state.values.push(value)
+            }
+            console.log(state)
+            buildChart()
+        }
+
+    })
+
+function buildChart(){
+    var chartData={
+        "type":"pareto",
+        "background-color":"white",
+        "scale-x":{
+            "values":state.items,
+            
+        },
+        options: {
+    'scale-y-2': {
+      'line-color': "gray",
+      label: {
+        text: "Percentage",
+        'font-color': "gray"
+      },
+      tick: {
+        'line-color': "gray"
+      },
+      item: {
+        color: "gray"
+      }
+    },
+    'line-plot': {
+      'line-color': "gray",
+      'line-width':2
+    }
+  },
+        "series":[
+            {
+                "values":state.values,
+                "background-color":"blueviolet"
+                
+            }
+            
+        ]
+    }
+
+    console.log(state.values)
+
+    zingchart.render({
+        id:"myChart",
+        data:chartData
+    });
+}
+
+    
+</script>
+
+{%endblock details%}

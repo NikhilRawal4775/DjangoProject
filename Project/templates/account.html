@@ -1,0 +1,30 @@
+{%extends 'home.html'%}
+{%block title%}Account{%endblock title%}
+
+{%block home%}{%endblock home%}
+
+{%block nav%}
+<li><a id='{%block survey%}{%endblock survey%}' href="{%url 'survey'%}"><span class="glyphicon glyphicon-lock"></span> Survey</a></li>
+{%if request.user.is_staff %}
+<li><a id='{%block admin%}{%endblock admin%}' href="{%url 'userpage'%}">ADMIN</a></li>
+{%endif%}
+{%endblock nav%}
+
+
+{%block account%}
+<li><img class="img-circle" src='{{request.user.account.user_image.url}}' style="width:50px;height:50px;border:2px solid white"></img></li>
+<li style="margin:15px 15px;color: white;">Hello, {{request.user}}</li>
+<li style="margin:15px 30px 15px 0px;color: white;">
+    <div class="dropdown">
+        <a class=" dropdown-toggle" type="" id="menu1" data-toggle="dropdown">
+        <span class="caret" style="width:10px;height:10px;color: white;"></span></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="{%url 'profile'%}">Profile</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="{%url 'logout'%}">Logout</a></li>
+        </ul>
+      </div>
+</li>
+{%endblock account%}
+{%block details%}
+
+{%endblock details%}

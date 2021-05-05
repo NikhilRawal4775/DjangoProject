@@ -1,0 +1,22 @@
+{%extends 'home.html'%}
+{%block home%}{%endblock home%}
+{%block gallery%}active{%endblock gallery%}
+{%block details%}
+<div class="container-fluid" style="font-family:Comic Sans MS;">
+    <br>
+    <h3>News</h3><hr style="height:1px; width:100%; border-width:0; color:red; background-color:rgb(53, 53, 53)">
+    {%for posts in p%}
+    <div style="border:2px solid black;width:470px;margin:10px;position:relative;float:left;border-radius:20px;background-color:white;">
+        <div style="width:100%;height:200px;">
+            <img src="{{posts.myimage.url}}" alt="" style="width: 465px;height:200px;border-radius:20px;" onerror="this.style.opacity='0'">
+        </div>
+        <div style="width:100%;padding:10px;">
+            <h3 style="color:darkcyan">{{posts.heading}}</h3>
+        </div>
+        <div style="width:100%;padding:15px;">
+            <p>{{posts.body}}</p>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{%endblock details%}

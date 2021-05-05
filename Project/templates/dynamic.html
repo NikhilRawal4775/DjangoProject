@@ -1,0 +1,71 @@
+{%extends 'account.html'%}
+{%block title%}Survey{%endblock title%}
+{%block survey%}active{%endblock survey%}
+{%block admin%}{%endblock admin%}
+{%block style1%}
+<style>
+    #a{
+        background-color: transparent;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: blueviolet;
+        width: 500px;
+    }
+    input{
+        margin:5px;
+    }
+    select{
+        width:200px;
+        background-color: transparent;
+        border-style: solid;
+        border-width: 0px 2px 2px 2px;
+        border-color: blueviolet;
+        margin:10px;
+    }
+   </style>
+{%endblock style1%}
+
+{%block details%}
+<div class="container">
+<center><h2>{{fname.form_name}}</h2></center><hr style="height:1px; width:100%; border-width:0; color:red; background-color:rgb(175, 4, 255)">
+<br>
+    <form method="post" action="{%url 'adddynamicresponse' id%}">
+        {% csrf_token %}
+        <table>
+    {%for i in qlist%}
+    <div class="a container" style="margin:5px;">
+        <p>Q:<font style="color:blueviolet;font-weight: bolder;"> {{i.ques}}</font></p>
+        {%ifequal i.field_type "T"%}
+        <input id="a" type="text" placeholder="Enter Here" name="{{i.id}}"><br>
+        {%endifequal%}
+        {%ifequal i.field_type "R"%}
+        {%for j in op%}
+        {%for o in j%}
+        {%ifequal i.id o.form.id%}
+        <input type="radio" name="{{i.id}}" value="{{o.option}}">{{o.option}}<br>
+        {%endifequal%}
+        {%endfor%}
+        {%endfor%}
+        {%endifequal%}
+
+        {%ifequal i.field_type "S"%}
+        <select name="{{i.id}}"> 
+        {%for j in op%}
+        {%for o in j%}
+        {%ifequal i.id o.form.id%}
+        <option value="{{o.option}}">{{o.option}}</option>
+        {%endifequal%}
+        {%endfor%}
+        {%endfor%}
+        </select>
+        {%endifequal%}
+        
+    </div>
+    {%endfor%}
+    
+<br>
+<button class="btn btn-success">Submit</button>
+</form>
+</div>
+
+{%endblock details%}

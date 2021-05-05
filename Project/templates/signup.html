@@ -1,0 +1,69 @@
+{%extends 'home.html'%}
+
+{%block title%}Sign Up{%endblock title%}
+
+{%block home%} {%endblock home%}
+{%block signup%}active{%endblock signup%}
+{%block style1%}
+<style>
+    input{
+        height:30px;
+        width: 300px;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: blueviolet;
+    }
+ 
+    th{
+        text-align: left;
+    }
+
+</style>
+{%endblock style1%}
+
+
+{%block details%}
+<div style="position: absolute;top: 200px;left: 150px;">
+    <center><h1 style="font-family: Comic Sans MS;"><font style="color: blueviolet;font-weight:bold;font-size:130px;">My</font><small style="font-size:80px;">Survey</small></h1>
+        <br>
+        <div class="alert" style="font-family: Comic Sans MS;">
+            {{form.errors}}
+            </div>
+    </center>
+    </div>
+    <div class="" style="font-family:Comic Sans MS;width:400px;height:500px;background-color:white;position: absolute;top: 100px;right: 320px;color: black;border-radius:100px 30px;border:2px solid blueviolet;">
+        <center><h1 >Sign up</h1></center><hr>
+       
+        <form method="post" action="">
+            {% csrf_token %}
+
+            <table style="width: 100%;height: 250px;margin:20px 60px;">
+                {%for field in form%}
+           <tr>
+               <th>{{field.label}}</th>
+              
+           </tr>
+           <tr>
+            <td>{{field}}</td>
+           </tr>
+
+            {%endfor%}
+        </table>
+        <br>
+            <center><button class="btn btn-success" style="width:100px;height: 40px;">Sign Up</button></center>
+        </form>
+
+        
+        
+    
+    </div>
+    <script>
+        var field=document.getElementsByTagName('input')
+        field[1].placeholder='Username'
+        field[2].placeholder='Email'
+        field[3].placeholder='Password'
+        field[4].placeholder='Confirm Password'
+    </script>
+
+
+{%endblock details%}

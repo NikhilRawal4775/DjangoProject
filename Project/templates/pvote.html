@@ -1,0 +1,40 @@
+{%extends 'account.html'%}
+{%block title%}Responses{%endblock title%}
+{%block survey%}active{%endblock survey%}
+{%block style1%}
+<style>
+
+</style>
+{%endblock style1%}
+{%block details%}
+<div class="container" style="font-family:Comic Sans MS;">
+    <center><h1 style="color:blueviolet;">Vote as you want</h1></center>
+    <div>
+        <h3>Question</h3><hr style="height:1px; width:100%; border-width:0; color:red; background-color:rgb(219, 51, 219)">
+    </div>
+    <div class="container" style="font-family:Comic Sans MS;">
+        <div class="container" style="font-family:Comic Sans MS;border:2px solid blueviolet;border-radius:20px;padding:15px;">
+            {{q.question}}
+        </div>
+    <br>
+ 
+        <div class="container">
+            <span class="label label-info">{{request.user}}</span>
+            <div style="font-family:Comic Sans MS;margin:5px 0px;width:900px;padding:7px;">  
+              <form method="post" action="">
+                {% csrf_token %}
+                {%for i in poption%}
+                <input type="radio" value="{{i.option}}" name="vote">{{i.option}}</input><br>
+                {%endfor%}
+                      
+                  <br>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{%endblock details%}
